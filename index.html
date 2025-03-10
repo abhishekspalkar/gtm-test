@@ -18,7 +18,39 @@
 		j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 		'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 		})(window,document,'script','dataLayer','GTM-M2KSC23M');</script>
+		
 		<!-- End Google Tag Manager -->
+		<script>
+  function setCookie(name, value, days) {
+      let expires = "";
+      if (days) {
+          let date = new Date();
+          date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
+          expires = "; expires=" + date.toUTCString();
+      }
+      document.cookie = name + "=" + encodeURIComponent(value) + "; path=/" + expires;
+  }
+
+  // Simulating dynamic data (replace with actual data fetch)
+  let userName = localStorage.getItem("userName") || "Guest";  // Get from localStorage
+  let userId = localStorage.getItem("userId") || Math.floor(Math.random() * 100000);  // Generate random ID if not stored
+
+  // Store data in cookies
+  setCookie("user", userName, 7);
+  setCookie("visitedPage", window.location.pathname, 7);
+  
+  // Push dynamic data to dataLayer
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({
+      'event': 'userData',
+      'userId': userId,
+      'userName': userName,
+      'visitedPage': window.location.pathname
+  });
+
+  console.log("Cookies: ", document.cookie);
+  console.log("DataLayer: ", window.dataLayer);
+</script>
 	</head>
 	<body class="is-preload">
 				<!-- Google Tag Manager (noscript) -->
